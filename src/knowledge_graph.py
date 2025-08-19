@@ -101,7 +101,7 @@ class KnowledgeGraph:
         return entities
     
     def extract_relationships(self, text, entities):
-        """Extract relationships between entities"""
+        """Extract relationships between entities - FIXED VERSION"""
         relationships = []
         
         # Relationship patterns
@@ -118,9 +118,13 @@ class KnowledgeGraph:
         for pattern, relation_type in patterns:
             matches = re.finditer(pattern, text_lower)
             for match in matches:
-                if len(match.groups()) >= 2:
+                try:
                     entity1 = match.group(1).strip()
-                    entity2 = match.group(-1).strip() if len(match.groups()) > 2 else match.group(2).strip()
+                    # Fixed group indexing
+                    if len(match.groups()) >= 3:
+                        entity2 = match.group(3).strip()
+                    else:
+                        entity2 = match.group(2).strip()
                     
                     # Validate entities exist in our extracted entities
                     all_entities = []
@@ -129,6 +133,10 @@ class KnowledgeGraph:
                     
                     if entity1 in all_entities or entity2 in all_entities:
                         relationships.append((entity1, relation_type, entity2))
+                        
+                except (IndexError, AttributeError):
+                    # Skip problematic regex matches
+                    continue
         
         return relationships
     

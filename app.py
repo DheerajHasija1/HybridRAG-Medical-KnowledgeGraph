@@ -16,7 +16,7 @@ def initialize_system_cached():
     vs.create_vectorstore_from_pdf(PDF_PATH)
 
     kg = KnowledgeGraph()
-    kg.build_graph_from_pdf_cached(PDF_PATH)
+    kg.build_graph_from_pdf(PDF_PATH)  
 
     agent = HybridRAGAgent(vs, kg)
     return agent

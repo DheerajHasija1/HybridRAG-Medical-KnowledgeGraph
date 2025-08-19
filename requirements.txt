@@ -4,8 +4,8 @@ langchain-community
 langchain-groq
 langgraph
 sentence-transformers
-chromadb
 networkx
 python-dotenv
 groq
 pypdf
+faiss-cpu

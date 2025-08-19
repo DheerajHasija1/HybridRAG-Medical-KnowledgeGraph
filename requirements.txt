@@ -1,8 +1,8 @@
-streamlit
 langchain
 langchain-community
 langchain-groq
 langgraph
+streamlit
 sentence-transformers
 networkx
 python-dotenv

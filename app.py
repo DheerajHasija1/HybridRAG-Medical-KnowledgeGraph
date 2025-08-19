@@ -13,7 +13,7 @@ def initialize_system_cached():
         return None
 
     vs = VectorStore()
-    vs.create_vectorstore_from_pdf_cached(PDF_PATH)
+    vs.create_vectorstore_from_pdf(PDF_PATH)
 
     kg = KnowledgeGraph()
     kg.build_graph_from_pdf_cached(PDF_PATH)

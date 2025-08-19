@@ -9,3 +9,5 @@ python-dotenv
 groq
 pypdf
 faiss-cpu
+transformers
+torch

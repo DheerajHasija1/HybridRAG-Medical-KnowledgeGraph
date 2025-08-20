@@ -5,248 +5,168 @@ from transformers import pipeline
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import re
+import json
 from collections import defaultdict
+import streamlit as st
 
 class KnowledgeGraph:
     def __init__(self):
-        # Initialize Medical NER pipeline (OpenMed model - best free option)
-        print("🔬 Loading Medical NER model...")
         try:
             self.ner_pipeline = pipeline(
                 "token-classification",
-                model="blaze999/Medical-NER",
+                "blaze999/Medical-NER",
                 aggregation_strategy="simple",
-                device=-1  # CPU usage
+                device=-1
             )
-            print("✅ Medical NER model loaded successfully")
-        except Exception as e:
-            print(f"⚠️ NER model failed, using fallback: {e}")
+        except Exception:
             self.ner_pipeline = None
-        
+
         self.graph = nx.MultiDiGraph()
         self.text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000, 
+            chunk_size=1000,
             chunk_overlap=100
         )
-    
+
     def extract_medical_entities(self, text):
-        """Extract medical entities using advanced NER"""
-        if self.ner_pipeline:
-            try:
-                # Use transformers NER
-                entities = self.ner_pipeline(text)
-                
-                # Group entities by type
-                entity_dict = defaultdict(list)
-                for entity in entities:
-                    entity_type = entity['entity_group'].lower()
-                    entity_text = entity['word'].strip()
-                    
-                    # Map to our categories
-                    if 'disease' in entity_type or 'disorder' in entity_type:
-                        entity_dict['diseases'].append(entity_text)
-                    elif 'drug' in entity_type or 'medication' in entity_type:
-                        entity_dict['treatments'].append(entity_text)
-                    elif 'symptom' in entity_type:
-                        entity_dict['symptoms'].append(entity_text)
-                    elif 'anatomy' in entity_type or 'body' in entity_type:
-                        entity_dict['anatomy'].append(entity_text)
-                
-                return dict(entity_dict)
-            
-            except Exception as e:
-                print(f"⚠️ NER extraction failed: {e}")
-        
-        # Fallback to regex-based extraction
-        return self._regex_entity_extraction(text)
-    
-    def _regex_entity_extraction(self, text):
-        """Fallback regex-based entity extraction"""
-        entities = {
-            'diseases': [],
-            'symptoms': [],
-            'treatments': [],
-            'anatomy': []
-        }
-        
-        # Common medical patterns
+        entities = {"diseases": [], "symptoms": [], "treatments": [], "anatomy": []}
+
         disease_patterns = [
-            r'\b(diabetes|cancer|hypertension|asthma|arthritis|pneumonia)\b',
-            r'\b(\w+itis|\w+osis|\w+emia)\b',  # inflammation, condition, blood condition
+            r'\b(diabetes|cancer|hypertension|asthma|arthritis|pneumonia|fever|malaria|tuberculosis)\b',
+            r'\b(covid|corona|influenza|hepatitis|bronchitis|gastritis|dermatitis)\b',
+            r'\b(\w+itis|\w+osis|\w+emia|\w+pathy)\b',
         ]
-        
+
         treatment_patterns = [
-            r'\b(insulin|aspirin|antibiotics|chemotherapy|surgery)\b',
-            r'\b(\w+mycin|\w+cillin)\b',  # common antibiotic suffixes
+            r'\b(insulin|aspirin|antibiotics|chemotherapy|surgery|ibuprofen|acetaminophen|paracetamol)\b',
+            r'\b(treatment|therapy|medicine|medication|drug|remedy)\b',
+            r'\b(\w+mycin|\w+cillin|\w+azole)\b',
         ]
-        
+
         symptom_patterns = [
-            r'\b(pain|fever|nausea|fatigue|headache|cough)\b',
-            r'\b(high blood pressure|chest pain|shortness of breath)\b'
+            r'\b(pain|fever|nausea|fatigue|headache|cough|chills|sweating|vomiting|dizziness)\b',
+            r'\b(high blood pressure|chest pain|shortness of breath|stomach pain|back pain)\b',
         ]
-        
+
+        text_lower = text.lower()
         for pattern in disease_patterns:
-            entities['diseases'].extend(re.findall(pattern, text, re.IGNORECASE))
-        
+            matches = re.findall(pattern, text_lower, re.IGNORECASE)
+            entities["diseases"].extend([m.strip() for m in matches if len(m.strip()) > 2])
         for pattern in treatment_patterns:
-            entities['treatments'].extend(re.findall(pattern, text, re.IGNORECASE))
-        
+            matches = re.findall(pattern, text_lower, re.IGNORECASE)
+            entities["treatments"].extend([m.strip() for m in matches if len(m.strip()) > 2])
         for pattern in symptom_patterns:
-            entities['symptoms'].extend(re.findall(pattern, text, re.IGNORECASE))
-        
-        # Clean and deduplicate
+            matches = re.findall(pattern, text_lower, re.IGNORECASE)
+            entities["symptoms"].extend([m.strip() for m in matches if len(m.strip()) > 2])
         for key in entities:
             entities[key] = list(set([e.lower().strip() for e in entities[key] if len(e.strip()) > 2]))
-        
         return entities
-    
-    def extract_relationships(self, text, entities):
-        """Extract relationships between entities - FIXED VERSION"""
-        relationships = []
+
+    def load_external_relations(self, relations_file="medical_relations.json"):
+        if not os.path.exists(relations_file):
+            return
         
-        # Relationship patterns
-        patterns = [
-            (r'(\w+)\s+(causes?|leads? to|results? in)\s+(\w+)', 'causes'),
-            (r'(\w+)\s+(is treated with|treated by|therapy|treatment)\s+(\w+)', 'treated_with'),
-            (r'(\w+)\s+(symptoms?|signs?)\s+(include|are)\s+(\w+)', 'has_symptom'),
-            (r'(\w+)\s+(affects?|impacts?)\s+(\w+)', 'affects'),
-            (r'(\w+)\s+(side effects?|adverse effects?)\s+(\w+)', 'side_effect'),
-        ]
-        
-        text_lower = text.lower()
-        
-        for pattern, relation_type in patterns:
-            matches = re.finditer(pattern, text_lower)
-            for match in matches:
-                try:
-                    entity1 = match.group(1).strip()
-                    # Fixed group indexing
-                    if len(match.groups()) >= 3:
-                        entity2 = match.group(3).strip()
-                    else:
-                        entity2 = match.group(2).strip()
-                    
-                    # Validate entities exist in our extracted entities
-                    all_entities = []
-                    for ent_list in entities.values():
-                        all_entities.extend(ent_list)
-                    
-                    if entity1 in all_entities or entity2 in all_entities:
-                        relationships.append((entity1, relation_type, entity2))
-                        
-                except (IndexError, AttributeError):
-                    # Skip problematic regex matches
-                    continue
-        
-        return relationships
-    
+        with open(relations_file, "r", encoding="utf-8") as f:
+            relations = json.load(f)
+
+        for entity, entity_relations in relations.items():
+            entity_clean = entity.lower().strip()
+            if len(entity_clean) > 1:
+                self.graph.add_node(entity_clean, type="medical_entity", source="biored")
+                for rel_type, targets in entity_relations.items():
+                    if isinstance(targets, list):
+                        for target in targets:
+                            if target and isinstance(target, str) and len(target.strip()) > 1:
+                                target_clean = target.lower().strip()
+                                self.graph.add_node(target_clean, type="related_entity", source="biored")
+                                self.graph.add_edge(entity_clean, target_clean, relation=rel_type)
+                                self.graph.add_edge(target_clean, entity_clean, relation=f"inverse_{rel_type}")
+
     def build_graph_from_pdf(self, pdf_path, persist_file="knowledge_graph.pkl"):
-        """Build knowledge graph from PDF using advanced NER"""
         if os.path.exists(persist_file):
-            print(f"✅ Loading existing knowledge graph from {persist_file}")
-            with open(persist_file, 'rb') as f:
+            with open(persist_file, "rb") as f:
                 self.graph = pickle.load(f)
+            self.load_external_relations()
+            with open(persist_file, "wb") as f:
+                pickle.dump(self.graph, f)
             return self.graph
-        
-        print(f"📄 Building knowledge graph from PDF: {pdf_path}")
-        
-        # Load and process PDF
+
         loader = PyPDFLoader(pdf_path)
         documents = loader.load()
         chunks = self.text_splitter.split_documents(documents)
-        
-        print(f"📋 Processing {len(chunks)} text chunks...")
-        
+
         all_entities = defaultdict(set)
-        all_relationships = []
-        
-        # Process each chunk
-        for i, chunk in enumerate(chunks[:50]):  # Limit for performance
-            if i % 10 == 0:
-                print(f"📊 Processed {i}/{min(50, len(chunks))} chunks...")
-            
+        for chunk in chunks[:50]:
             text = chunk.page_content
-            
-            # Extract entities
             entities = self.extract_medical_entities(text)
-            for entity_type, entity_list in entities.items():
-                all_entities[entity_type].update(entity_list)
-            
-            # Extract relationships
-            relationships = self.extract_relationships(text, entities)
-            all_relationships.extend(relationships)
+            for k, v in entities.items():
+                all_entities[k].update(v)
         
-        # Build NetworkX graph
-        print("🔗 Building graph structure...")
+        for k, node_set in all_entities.items():
+            for node in node_set:
+                if len(node) > 2:
+                    self.graph.add_node(node, type=k, source="pdf")
+
+        self.load_external_relations()
         
-        # Add nodes
-        for entity_type, entity_set in all_entities.items():
-            for entity in entity_set:
-                self.graph.add_node(entity, type=entity_type)
-        
-        # Add edges
-        for entity1, relation, entity2 in all_relationships:
-            if self.graph.has_node(entity1) and self.graph.has_node(entity2):
-                self.graph.add_edge(entity1, entity2, relation=relation)
-        
-        # Save graph
-        with open(persist_file, 'wb') as f:
+        with open(persist_file, "wb") as f:
             pickle.dump(self.graph, f)
-        
-        nodes = self.graph.number_of_nodes()
-        edges = self.graph.number_of_edges()
-        print(f"✅ Knowledge graph created: {nodes} nodes, {edges} edges")
-        print(f"💾 Graph saved to {persist_file}")
-        
         return self.graph
-    
+
     def query_graph(self, query, max_results=5):
-        """Query the knowledge graph"""
         if self.graph.number_of_nodes() == 0:
             return []
         
         query_lower = query.lower()
-        results = []
+        relevant_nodes = set()
         
-        # Find relevant nodes
-        relevant_nodes = []
         for node in self.graph.nodes():
-            if any(word in node.lower() for word in query_lower.split()):
-                relevant_nodes.append(node)
-        
-        # Get related information
-        for node in relevant_nodes[:5]:  # Limit results
-            # Direct neighbors
-            neighbors = list(self.graph.neighbors(node))
-            
-            # Get edge information
-            for neighbor in neighbors:
+            node_lower = str(node).lower()
+            if (query_lower == node_lower or 
+                query_lower in node_lower or 
+                node_lower in query_lower or
+                any(word in node_lower for word in query_lower.split() if len(word) > 2)):
+                relevant_nodes.add(node)
+
+        results = []
+        for node in list(relevant_nodes)[:15]:
+            for neighbor in self.graph.neighbors(node):
                 edge_data = self.graph.get_edge_data(node, neighbor)
                 if edge_data:
                     for edge_info in edge_data.values():
-                        relation = edge_info.get('relation', 'related_to')
-                        result_text = f"{node} {relation} {neighbor}"
-                        results.append(result_text)
-        
-        # Also search in reverse direction
-        for node in relevant_nodes[:5]:
-            predecessors = list(self.graph.predecessors(node))
-            for pred in predecessors:
+                        relation = edge_info.get("relation", "related_to")
+                        results.append(f"{node} {relation} {neighbor}")
+            
+            for pred in self.graph.predecessors(node):
                 edge_data = self.graph.get_edge_data(pred, node)
                 if edge_data:
                     for edge_info in edge_data.values():
-                        relation = edge_info.get('relation', 'related_to')
-                        result_text = f"{pred} {relation} {node}"
-                        results.append(result_text)
-        
-        # Remove duplicates and limit results
-        unique_results = list(set(results))
-        return unique_results[:max_results]
-    
+                        relation = edge_info.get("relation", "related_to")
+                        results.append(f"{pred} {relation} {node}")
+
+        return list(set(results))[:max_results]
+
     def get_graph_stats(self):
-        """Get basic statistics about the graph"""
+        node_types = nx.get_node_attributes(self.graph, "type")
+        node_sources = nx.get_node_attributes(self.graph, "source")
+        
+        type_counts = defaultdict(int)
+        source_counts = defaultdict(int)
+        
+        for node_type in node_types.values():
+            type_counts[node_type] += 1
+        for source in node_sources.values():
+            source_counts[source] += 1
+
         return {
-            'nodes': self.graph.number_of_nodes(),
-            'edges': self.graph.number_of_edges(),
-            'node_types': len(set(nx.get_node_attributes(self.graph, 'type').values()))
+            "nodes": self.graph.number_of_nodes(),
+            "edges": self.graph.number_of_edges(),
+            "node_types": len(set(node_types.values())),
+            "type_breakdown": dict(type_counts),
+            "source_breakdown": dict(source_counts)
         }
+
+@st.cache_resource
+def load_or_create_knowledge_graph(pdf_path):
+    kg = KnowledgeGraph()
+    kg.build_graph_from_pdf(pdf_path)
+    return kg

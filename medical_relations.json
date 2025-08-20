@@ -1,0 +1,236 @@
+{
+  "fever": {
+    "symptoms": ["headache", "chills", "sweating", "fatigue"],
+    "treatments": ["aspirin", "paracetamol", "rest", "fluids"],
+    "causes": ["infection", "virus", "bacteria"],
+    "related_to": ["temperature", "immune response"]
+  },
+  "diabetes": {
+    "symptoms": ["thirst", "frequent urination", "blurred vision"],
+    "treatments": ["insulin", "metformin", "diet control", "exercise"],
+    "causes": ["genetics", "lifestyle", "obesity"],
+    "related_to": ["blood sugar", "metabolism"]
+  },
+  "hypertension": {
+    "symptoms": ["headache", "dizziness", "chest pain"],
+    "treatments": ["medication", "diet", "exercise"],
+    "causes": ["genetics", "salt", "stress"],
+    "related_to": ["blood pressure", "heart health"]
+  },
+  "asthma": {
+    "symptoms": ["shortness of breath", "wheezing", "cough"],
+    "treatments": ["inhalers", "steroids"],
+    "causes": ["allergy", "pollution"],
+    "related_to": ["lungs", "respiratory system"]
+  },
+  "cancer": {
+    "symptoms": ["fatigue", "weight loss", "pain"],
+    "treatments": ["chemotherapy", "radiation", "surgery"],
+    "causes": ["genetics", "smoking", "radiation"],
+    "related_to": ["tumor", "oncology"]
+  },
+  "covid-19": {
+    "symptoms": ["fever", "cough", "loss of taste", "loss of smell"],
+    "treatments": ["supportive care", "oxygen therapy", "vaccination"],
+    "causes": ["virus"],
+    "related_to": ["pandemic", "respiratory illness"]
+  },
+  "stroke": {
+    "symptoms": ["numbness", "confusion", "speech difficulty"],
+    "treatments": ["clot-busting drugs", "rehabilitation"],
+    "causes": ["blood clots", "high blood pressure"],
+    "related_to": ["brain", "nervous system"]
+  },
+  "alzheimer's disease": {
+    "symptoms": ["memory loss", "confusion", "disorientation"],
+    "treatments": ["cognitive therapy", "medication"],
+    "causes": ["age", "genetics"],
+    "related_to": ["brain", "dementia"]
+  },
+  "depression": {
+    "symptoms": ["sadness", "loss of interest", "fatigue"],
+    "treatments": ["antidepressants", "therapy"],
+    "causes": ["chemical imbalance", "stress"],
+    "related_to": ["mental health"]
+  },
+  "migraine": {
+    "symptoms": ["headache", "nausea", "sensitivity to light"],
+    "treatments": ["pain relievers", "rest"],
+    "causes": ["genetics", "stress"],
+    "related_to": ["neurological"]
+  },
+  "arthritis": {
+    "symptoms": ["joint pain", "stiffness", "swelling"],
+    "treatments": ["anti-inflammatory drugs", "physical therapy"],
+    "causes": ["age", "injury"],
+    "related_to": ["bones", "joints"]
+  },
+  "obesity": {
+    "symptoms": ["weight gain", "breathlessness"],
+    "treatments": ["diet", "exercise", "surgery"],
+    "causes": ["lifestyle", "genetics"],
+    "related_to": ["metabolism"]
+  },
+  "anxiety": {
+    "symptoms": ["excessive worry", "restlessness"],
+    "treatments": ["therapy", "medication"],
+    "causes": ["stress", "genetics"],
+    "related_to": ["mental health"]
+  },
+  "allergy": {
+    "symptoms": ["rash", "swelling", "itching"],
+    "treatments": ["antihistamines", "avoidance"],
+    "causes": ["immune response"],
+    "related_to": ["immune system"]
+  },
+  "pneumonia": {
+    "symptoms": ["cough", "fever", "shortness of breath"],
+    "treatments": ["antibiotics", "rest"],
+    "causes": ["infection"],
+    "related_to": ["lungs", "respiratory"]
+  },
+  "tuberculosis": {
+    "symptoms": ["persistent cough", "weight loss", "night sweats"],
+    "treatments": ["antibiotics", "long-term therapy"],
+    "causes": ["bacteria"],
+    "related_to": ["lungs"]
+  },
+  "high blood pressure": {
+    "symptoms": ["headache", "dizziness"],
+    "treatments": ["medication", "diet"],
+    "causes": ["stress", "obesity"],
+    "related_to": ["cardiovascular"]
+  },
+  "bronchitis": {
+    "symptoms": ["cough", "mucus", "fatigue"],
+    "treatments": ["rest", "medication"],
+    "causes": ["infection", "smoking"],
+    "related_to": ["lungs", "respiratory"]
+  },
+  "chickenpox": {
+    "symptoms": ["rash", "fever", "fatigue"],
+    "treatments": ["calamine lotion", "rest"],
+    "causes": ["varicella zoster virus"],
+    "related_to": ["virus", "infectious disease"]
+  },
+  "conjunctivitis": {
+    "symptoms": ["redness", "itching", "tearing"],
+    "treatments": ["eye drops", "antibiotics"],
+    "causes": ["infection", "allergens"],
+    "related_to": ["eyes"]
+  },
+  "dehydration": {
+    "symptoms": ["thirst", "dry mouth", "dizziness"],
+    "treatments": ["fluids", "rest"],
+    "causes": ["diarrhea", "heat exposure"],
+    "related_to": ["hydration"]
+  },
+  "epilepsy": {
+    "symptoms": ["seizures", "loss of consciousness"],
+    "treatments": ["antiepileptic drugs", "therapy"],
+    "causes": ["genetics", "brain injury"],
+    "related_to": ["neurological"]
+  },
+  "flu": {
+    "symptoms": ["fever", "cough", "body aches"],
+    "treatments": ["rest", "fluids", "antiviral drugs"],
+    "causes": ["influenza virus"],
+    "related_to": ["virus", "respiratory"]
+  },
+  "gout": {
+    "symptoms": ["joint pain", "swelling"],
+    "treatments": ["pain relievers", "diet changes"],
+    "causes": ["uric acid buildup"],
+    "related_to": ["joints"]
+  },
+  "heart attack": {
+    "symptoms": ["chest pain", "shortness of breath"],
+    "treatments": ["emergency care", "medication"],
+    "causes": ["blocked arteries"],
+    "related_to": ["heart"]
+  },
+  "hepatitis": {
+    "symptoms": ["jaundice", "fatigue"],
+    "treatments": ["antiviral drugs", "rest"],
+    "causes": ["virus"],
+    "related_to": ["liver"]
+  },
+  "hiv": {
+    "symptoms": ["fever", "weight loss", "fatigue"],
+    "treatments": ["antiretroviral therapy"],
+    "causes": ["virus"],
+    "related_to": ["immune system"]
+  },
+  "ibd": {
+    "symptoms": ["abdominal pain", "diarrhea"],
+    "treatments": ["anti-inflammatory drugs", "diet"],
+    "causes": ["immune response"],
+    "related_to": ["digestive system"]
+  },
+  "kidney stones": {
+    "symptoms": ["severe pain", "blood in urine"],
+    "treatments": ["pain relief", "surgery"],
+    "causes": ["dehydration", "diet"],
+    "related_to": ["urinary system"]
+  },
+  "liver disease": {
+    "symptoms": ["jaundice", "abdominal pain"],
+    "treatments": ["medication", "lifestyle changes"],
+    "causes": ["alcohol", "virus"],
+    "related_to": ["liver"]
+  },
+  "multiple sclerosis": {
+    "symptoms": ["fatigue", "muscle weakness", "vision problems"],
+    "treatments": ["immunosuppressants", "physical therapy"],
+    "causes": ["autoimmune"],
+    "related_to": ["nervous system"]
+  },
+  "osteoporosis": {
+    "symptoms": ["bone pain", "fractures"],
+    "treatments": ["calcium", "vitamin D", "exercise"],
+    "causes": ["age", "hormone deficiency"],
+    "related_to": ["bones"]
+  },
+  "parkinson's disease": {
+    "symptoms": ["tremors", "stiffness", "balance problems"],
+    "treatments": ["medication", "therapy"],
+    "causes": ["genetics", "environmental factors"],
+    "related_to": ["nervous system"]
+  },
+  "psoriasis": {
+    "symptoms": ["red patches", "itching"],
+    "treatments": ["topical creams", "phototherapy"],
+    "causes": ["immune response"],
+    "related_to": ["skin"]
+  },
+  "thyroid disorders": {
+    "symptoms": ["fatigue", "weight changes"],
+    "treatments": ["medication", "surgery"],
+    "causes": ["autoimmune", "iodine deficiency"],
+    "related_to": ["endocrine system"]
+  },
+  "urinary tract infection": {
+    "symptoms": ["burning sensation", "frequent urination"],
+    "treatments": ["antibiotics", "fluids"],
+    "causes": ["bacteria"],
+    "related_to": ["urinary system"]
+  },
+  "vitamin d deficiency": {
+    "symptoms": ["fatigue", "bone pain"],
+    "treatments": ["supplements", "sun exposure"],
+    "causes": ["lack of sun", "diet"],
+    "related_to": ["bone health"]
+  },
+  "whooping cough": {
+    "symptoms": ["severe cough", "runny nose"],
+    "treatments": ["antibiotics", "rest"],
+    "causes": ["bacteria"],
+    "related_to": ["respiratory"]
+  },
+  "zika virus": {
+    "symptoms": ["fever", "rash", "joint pain"],
+    "treatments": ["rest", "fluids"],
+    "causes": ["virus"],
+    "related_to": ["mosquito", "infection"]
+  }
+}

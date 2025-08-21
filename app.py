@@ -86,7 +86,8 @@ def main():
     # Check API key
     groq_key = os.getenv("GROQ_API_KEY")
     if not groq_key:
-        st.warning("⚠️ GROQ_API_KEY not found in .env file.")
+        # st.warning("⚠️ GROQ_API_KEY not found in .env file.")
+        pass
 
     # Initialize system
     agent = initialize_system_cached()

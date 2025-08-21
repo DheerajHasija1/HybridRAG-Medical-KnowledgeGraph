@@ -1,236 +1,512 @@
 {
   "fever": {
-    "symptoms": ["headache", "chills", "sweating", "fatigue"],
-    "treatments": ["aspirin", "paracetamol", "rest", "fluids"],
-    "causes": ["infection", "virus", "bacteria"],
-    "related_to": ["temperature", "immune response"]
+    "symptoms": ["headache", "chills", "sweating", "fatigue", "muscle aches"],
+    "treatments": ["aspirin", "paracetamol", "rest", "fluids", "cooling measures"],
+    "causes": ["infection", "virus", "bacteria", "inflammation"],
+    "related_to": ["temperature", "immune response", "infection"]
   },
   "diabetes": {
-    "symptoms": ["thirst", "frequent urination", "blurred vision"],
-    "treatments": ["insulin", "metformin", "diet control", "exercise"],
-    "causes": ["genetics", "lifestyle", "obesity"],
-    "related_to": ["blood sugar", "metabolism"]
+    "symptoms": ["thirst", "frequent urination", "blurred vision", "weight loss", "fatigue"],
+    "treatments": ["insulin", "metformin", "diet control", "exercise", "blood monitoring"],
+    "causes": ["genetics", "lifestyle", "obesity", "pancreatic dysfunction"],
+    "related_to": ["blood sugar", "metabolism", "pancreas"]
   },
   "hypertension": {
-    "symptoms": ["headache", "dizziness", "chest pain"],
-    "treatments": ["medication", "diet", "exercise"],
-    "causes": ["genetics", "salt", "stress"],
-    "related_to": ["blood pressure", "heart health"]
+    "symptoms": ["headache", "dizziness", "chest pain", "shortness of breath"],
+    "treatments": ["medication", "diet", "exercise", "stress management"],
+    "causes": ["genetics", "salt", "stress", "obesity", "age"],
+    "related_to": ["blood pressure", "heart health", "cardiovascular"]
   },
   "asthma": {
-    "symptoms": ["shortness of breath", "wheezing", "cough"],
-    "treatments": ["inhalers", "steroids"],
-    "causes": ["allergy", "pollution"],
-    "related_to": ["lungs", "respiratory system"]
+    "symptoms": ["shortness of breath", "wheezing", "cough", "chest tightness"],
+    "treatments": ["inhalers", "steroids", "bronchodilators", "allergy management"],
+    "causes": ["allergy", "pollution", "genetics", "respiratory infections"],
+    "related_to": ["lungs", "respiratory system", "airways"]
   },
   "cancer": {
-    "symptoms": ["fatigue", "weight loss", "pain"],
-    "treatments": ["chemotherapy", "radiation", "surgery"],
-    "causes": ["genetics", "smoking", "radiation"],
-    "related_to": ["tumor", "oncology"]
+    "symptoms": ["fatigue", "weight loss", "pain", "lumps", "changes in bowel habits"],
+    "treatments": ["chemotherapy", "radiation", "surgery", "immunotherapy"],
+    "causes": ["genetics", "smoking", "radiation", "chemicals", "viruses"],
+    "related_to": ["tumor", "oncology", "malignancy"]
   },
   "covid-19": {
-    "symptoms": ["fever", "cough", "loss of taste", "loss of smell"],
-    "treatments": ["supportive care", "oxygen therapy", "vaccination"],
-    "causes": ["virus"],
-    "related_to": ["pandemic", "respiratory illness"]
+    "symptoms": ["fever", "cough", "loss of taste", "loss of smell", "fatigue"],
+    "treatments": ["supportive care", "oxygen therapy", "vaccination", "antivirals"],
+    "causes": ["SARS-CoV-2 virus"],
+    "related_to": ["pandemic", "respiratory illness", "coronavirus"]
   },
   "stroke": {
-    "symptoms": ["numbness", "confusion", "speech difficulty"],
-    "treatments": ["clot-busting drugs", "rehabilitation"],
-    "causes": ["blood clots", "high blood pressure"],
-    "related_to": ["brain", "nervous system"]
+    "symptoms": ["numbness", "confusion", "speech difficulty", "vision problems"],
+    "treatments": ["clot-busting drugs", "rehabilitation", "surgery", "medication"],
+    "causes": ["blood clots", "high blood pressure", "diabetes", "smoking"],
+    "related_to": ["brain", "nervous system", "cardiovascular"]
   },
   "alzheimer's disease": {
-    "symptoms": ["memory loss", "confusion", "disorientation"],
-    "treatments": ["cognitive therapy", "medication"],
-    "causes": ["age", "genetics"],
-    "related_to": ["brain", "dementia"]
+    "symptoms": ["memory loss", "confusion", "disorientation", "language problems"],
+    "treatments": ["cognitive therapy", "medication", "support care", "lifestyle changes"],
+    "causes": ["age", "genetics", "brain changes", "environmental factors"],
+    "related_to": ["brain", "dementia", "neurodegeneration"]
   },
   "depression": {
-    "symptoms": ["sadness", "loss of interest", "fatigue"],
-    "treatments": ["antidepressants", "therapy"],
-    "causes": ["chemical imbalance", "stress"],
-    "related_to": ["mental health"]
+    "symptoms": ["sadness", "loss of interest", "fatigue", "sleep changes", "appetite changes"],
+    "treatments": ["antidepressants", "therapy", "counseling", "lifestyle changes"],
+    "causes": ["chemical imbalance", "stress", "genetics", "trauma"],
+    "related_to": ["mental health", "mood disorders", "psychology"]
   },
   "migraine": {
-    "symptoms": ["headache", "nausea", "sensitivity to light"],
-    "treatments": ["pain relievers", "rest"],
-    "causes": ["genetics", "stress"],
-    "related_to": ["neurological"]
+    "symptoms": ["headache", "nausea", "sensitivity to light", "vomiting"],
+    "treatments": ["pain relievers", "rest", "preventive medication", "lifestyle changes"],
+    "causes": ["genetics", "stress", "hormones", "triggers"],
+    "related_to": ["neurological", "headache disorders", "pain"]
   },
   "arthritis": {
-    "symptoms": ["joint pain", "stiffness", "swelling"],
-    "treatments": ["anti-inflammatory drugs", "physical therapy"],
-    "causes": ["age", "injury"],
-    "related_to": ["bones", "joints"]
+    "symptoms": ["joint pain", "stiffness", "swelling", "reduced mobility"],
+    "treatments": ["anti-inflammatory drugs", "physical therapy", "exercise", "surgery"],
+    "causes": ["age", "injury", "autoimmune", "wear and tear"],
+    "related_to": ["bones", "joints", "inflammation"]
   },
   "obesity": {
-    "symptoms": ["weight gain", "breathlessness"],
-    "treatments": ["diet", "exercise", "surgery"],
-    "causes": ["lifestyle", "genetics"],
-    "related_to": ["metabolism"]
+    "symptoms": ["weight gain", "breathlessness", "joint pain", "fatigue"],
+    "treatments": ["diet", "exercise", "surgery", "medication", "behavioral therapy"],
+    "causes": ["lifestyle", "genetics", "hormones", "medications"],
+    "related_to": ["metabolism", "weight management", "lifestyle"]
   },
   "anxiety": {
-    "symptoms": ["excessive worry", "restlessness"],
-    "treatments": ["therapy", "medication"],
-    "causes": ["stress", "genetics"],
-    "related_to": ["mental health"]
-  },
-  "allergy": {
-    "symptoms": ["rash", "swelling", "itching"],
-    "treatments": ["antihistamines", "avoidance"],
-    "causes": ["immune response"],
-    "related_to": ["immune system"]
+    "symptoms": ["excessive worry", "restlessness", "panic attacks", "sweating"],
+    "treatments": ["therapy", "medication", "relaxation techniques", "lifestyle changes"],
+    "causes": ["stress", "genetics", "trauma", "medical conditions"],
+    "related_to": ["mental health", "stress disorders", "psychology"]
   },
   "pneumonia": {
-    "symptoms": ["cough", "fever", "shortness of breath"],
-    "treatments": ["antibiotics", "rest"],
-    "causes": ["infection"],
-    "related_to": ["lungs", "respiratory"]
+    "symptoms": ["cough", "fever", "shortness of breath", "chest pain"],
+    "treatments": ["antibiotics", "rest", "oxygen therapy", "supportive care"],
+    "causes": ["bacteria", "virus", "fungi", "infection"],
+    "related_to": ["lungs", "respiratory", "infection"]
   },
   "tuberculosis": {
-    "symptoms": ["persistent cough", "weight loss", "night sweats"],
-    "treatments": ["antibiotics", "long-term therapy"],
-    "causes": ["bacteria"],
-    "related_to": ["lungs"]
-  },
-  "high blood pressure": {
-    "symptoms": ["headache", "dizziness"],
-    "treatments": ["medication", "diet"],
-    "causes": ["stress", "obesity"],
-    "related_to": ["cardiovascular"]
+    "symptoms": ["persistent cough", "weight loss", "night sweats", "fatigue"],
+    "treatments": ["antibiotics", "long-term therapy", "isolation", "monitoring"],
+    "causes": ["mycobacterium tuberculosis", "infection", "immune weakness"],
+    "related_to": ["lungs", "infectious disease", "bacteria"]
   },
   "bronchitis": {
-    "symptoms": ["cough", "mucus", "fatigue"],
-    "treatments": ["rest", "medication"],
-    "causes": ["infection", "smoking"],
-    "related_to": ["lungs", "respiratory"]
+    "symptoms": ["cough", "mucus", "fatigue", "chest discomfort"],
+    "treatments": ["rest", "medication", "fluids", "humidifier"],
+    "causes": ["infection", "smoking", "pollution", "irritants"],
+    "related_to": ["lungs", "respiratory", "airways"]
   },
   "chickenpox": {
-    "symptoms": ["rash", "fever", "fatigue"],
-    "treatments": ["calamine lotion", "rest"],
+    "symptoms": ["rash", "fever", "fatigue", "itching"],
+    "treatments": ["calamine lotion", "rest", "antihistamines", "pain relievers"],
     "causes": ["varicella zoster virus"],
-    "related_to": ["virus", "infectious disease"]
+    "related_to": ["virus", "infectious disease", "skin"]
   },
   "conjunctivitis": {
-    "symptoms": ["redness", "itching", "tearing"],
-    "treatments": ["eye drops", "antibiotics"],
-    "causes": ["infection", "allergens"],
-    "related_to": ["eyes"]
+    "symptoms": ["redness", "itching", "tearing", "discharge"],
+    "treatments": ["eye drops", "antibiotics", "cold compress", "hygiene"],
+    "causes": ["infection", "allergens", "irritants", "virus"],
+    "related_to": ["eyes", "infection", "inflammation"]
   },
   "dehydration": {
-    "symptoms": ["thirst", "dry mouth", "dizziness"],
-    "treatments": ["fluids", "rest"],
-    "causes": ["diarrhea", "heat exposure"],
-    "related_to": ["hydration"]
+    "symptoms": ["thirst", "dry mouth", "dizziness", "fatigue"],
+    "treatments": ["fluids", "rest", "electrolyte replacement", "IV fluids"],
+    "causes": ["diarrhea", "heat exposure", "vomiting", "inadequate fluid intake"],
+    "related_to": ["hydration", "fluid balance", "electrolytes"]
   },
   "epilepsy": {
-    "symptoms": ["seizures", "loss of consciousness"],
-    "treatments": ["antiepileptic drugs", "therapy"],
-    "causes": ["genetics", "brain injury"],
-    "related_to": ["neurological"]
+    "symptoms": ["seizures", "loss of consciousness", "muscle spasms", "confusion"],
+    "treatments": ["antiepileptic drugs", "therapy", "surgery", "lifestyle management"],
+    "causes": ["genetics", "brain injury", "stroke", "infections"],
+    "related_to": ["neurological", "brain", "seizure disorders"]
   },
   "flu": {
-    "symptoms": ["fever", "cough", "body aches"],
-    "treatments": ["rest", "fluids", "antiviral drugs"],
+    "symptoms": ["fever", "cough", "body aches", "fatigue"],
+    "treatments": ["rest", "fluids", "antiviral drugs", "symptom relief"],
     "causes": ["influenza virus"],
-    "related_to": ["virus", "respiratory"]
+    "related_to": ["virus", "respiratory", "seasonal illness"]
   },
   "gout": {
-    "symptoms": ["joint pain", "swelling"],
-    "treatments": ["pain relievers", "diet changes"],
-    "causes": ["uric acid buildup"],
-    "related_to": ["joints"]
+    "symptoms": ["joint pain", "swelling", "redness", "tenderness"],
+    "treatments": ["pain relievers", "diet changes", "medication", "lifestyle modification"],
+    "causes": ["uric acid buildup", "diet", "genetics", "lifestyle"],
+    "related_to": ["joints", "metabolism", "inflammation"]
   },
   "heart attack": {
-    "symptoms": ["chest pain", "shortness of breath"],
-    "treatments": ["emergency care", "medication"],
-    "causes": ["blocked arteries"],
-    "related_to": ["heart"]
+    "symptoms": ["chest pain", "shortness of breath", "nausea", "sweating"],
+    "treatments": ["emergency care", "medication", "surgery", "rehabilitation"],
+    "causes": ["blocked arteries", "high cholesterol", "hypertension", "smoking"],
+    "related_to": ["heart", "cardiovascular", "emergency"]
   },
   "hepatitis": {
-    "symptoms": ["jaundice", "fatigue"],
-    "treatments": ["antiviral drugs", "rest"],
-    "causes": ["virus"],
-    "related_to": ["liver"]
+    "symptoms": ["jaundice", "fatigue", "abdominal pain", "nausea"],
+    "treatments": ["antiviral drugs", "rest", "supportive care", "vaccination"],
+    "causes": ["virus", "alcohol", "drugs", "autoimmune"],
+    "related_to": ["liver", "infection", "inflammation"]
   },
   "hiv": {
-    "symptoms": ["fever", "weight loss", "fatigue"],
-    "treatments": ["antiretroviral therapy"],
-    "causes": ["virus"],
-    "related_to": ["immune system"]
-  },
-  "ibd": {
-    "symptoms": ["abdominal pain", "diarrhea"],
-    "treatments": ["anti-inflammatory drugs", "diet"],
-    "causes": ["immune response"],
-    "related_to": ["digestive system"]
+    "symptoms": ["fever", "weight loss", "fatigue", "infections"],
+    "treatments": ["antiretroviral therapy", "supportive care", "monitoring"],
+    "causes": ["HIV virus", "sexual transmission", "blood contact"],
+    "related_to": ["immune system", "virus", "chronic infection"]
   },
   "kidney stones": {
-    "symptoms": ["severe pain", "blood in urine"],
-    "treatments": ["pain relief", "surgery"],
-    "causes": ["dehydration", "diet"],
-    "related_to": ["urinary system"]
-  },
-  "liver disease": {
-    "symptoms": ["jaundice", "abdominal pain"],
-    "treatments": ["medication", "lifestyle changes"],
-    "causes": ["alcohol", "virus"],
-    "related_to": ["liver"]
+    "symptoms": ["severe pain", "blood in urine", "nausea", "frequent urination"],
+    "treatments": ["pain relief", "surgery", "hydration", "medication"],
+    "causes": ["dehydration", "diet", "genetics", "medical conditions"],
+    "related_to": ["urinary system", "kidneys", "pain"]
   },
   "multiple sclerosis": {
-    "symptoms": ["fatigue", "muscle weakness", "vision problems"],
-    "treatments": ["immunosuppressants", "physical therapy"],
-    "causes": ["autoimmune"],
-    "related_to": ["nervous system"]
+    "symptoms": ["fatigue", "muscle weakness", "vision problems", "coordination issues"],
+    "treatments": ["immunosuppressants", "physical therapy", "medication", "lifestyle support"],
+    "causes": ["autoimmune", "genetics", "environmental factors"],
+    "related_to": ["nervous system", "autoimmune", "chronic disease"]
   },
   "osteoporosis": {
-    "symptoms": ["bone pain", "fractures"],
-    "treatments": ["calcium", "vitamin D", "exercise"],
-    "causes": ["age", "hormone deficiency"],
-    "related_to": ["bones"]
+    "symptoms": ["bone pain", "fractures", "height loss", "posture changes"],
+    "treatments": ["calcium", "vitamin D", "exercise", "medication"],
+    "causes": ["age", "hormone deficiency", "lifestyle", "genetics"],
+    "related_to": ["bones", "aging", "fractures"]
   },
   "parkinson's disease": {
-    "symptoms": ["tremors", "stiffness", "balance problems"],
-    "treatments": ["medication", "therapy"],
-    "causes": ["genetics", "environmental factors"],
-    "related_to": ["nervous system"]
+    "symptoms": ["tremors", "stiffness", "balance problems", "slow movement"],
+    "treatments": ["medication", "therapy", "surgery", "exercise"],
+    "causes": ["genetics", "environmental factors", "brain changes"],
+    "related_to": ["nervous system", "movement disorders", "brain"]
   },
   "psoriasis": {
-    "symptoms": ["red patches", "itching"],
-    "treatments": ["topical creams", "phototherapy"],
-    "causes": ["immune response"],
-    "related_to": ["skin"]
+    "symptoms": ["red patches", "itching", "scaling", "dry skin"],
+    "treatments": ["topical creams", "phototherapy", "medication", "moisturizers"],
+    "causes": ["immune response", "genetics", "triggers", "stress"],
+    "related_to": ["skin", "autoimmune", "inflammation"]
   },
   "thyroid disorders": {
-    "symptoms": ["fatigue", "weight changes"],
-    "treatments": ["medication", "surgery"],
-    "causes": ["autoimmune", "iodine deficiency"],
-    "related_to": ["endocrine system"]
+    "symptoms": ["fatigue", "weight changes", "mood changes", "temperature sensitivity"],
+    "treatments": ["medication", "surgery", "hormone replacement", "monitoring"],
+    "causes": ["autoimmune", "iodine deficiency", "genetics", "nodules"],
+    "related_to": ["endocrine system", "hormones", "metabolism"]
   },
   "urinary tract infection": {
-    "symptoms": ["burning sensation", "frequent urination"],
-    "treatments": ["antibiotics", "fluids"],
-    "causes": ["bacteria"],
-    "related_to": ["urinary system"]
+    "symptoms": ["burning sensation", "frequent urination", "cloudy urine", "pelvic pain"],
+    "treatments": ["antibiotics", "fluids", "pain relief", "hygiene"],
+    "causes": ["bacteria", "hygiene", "anatomy", "sexual activity"],
+    "related_to": ["urinary system", "infection", "bacteria"]
   },
   "vitamin d deficiency": {
-    "symptoms": ["fatigue", "bone pain"],
-    "treatments": ["supplements", "sun exposure"],
-    "causes": ["lack of sun", "diet"],
-    "related_to": ["bone health"]
+    "symptoms": ["fatigue", "bone pain", "muscle weakness", "depression"],
+    "treatments": ["supplements", "sun exposure", "diet changes", "fortified foods"],
+    "causes": ["lack of sun", "diet", "absorption problems", "kidney disease"],
+    "related_to": ["bone health", "nutrition", "vitamins"]
   },
   "whooping cough": {
-    "symptoms": ["severe cough", "runny nose"],
-    "treatments": ["antibiotics", "rest"],
-    "causes": ["bacteria"],
-    "related_to": ["respiratory"]
+    "symptoms": ["severe cough", "runny nose", "fever", "fatigue"],
+    "treatments": ["antibiotics", "rest", "supportive care", "vaccination"],
+    "causes": ["bordetella pertussis bacteria"],
+    "related_to": ["respiratory", "infectious disease", "bacteria"]
   },
   "zika virus": {
-    "symptoms": ["fever", "rash", "joint pain"],
-    "treatments": ["rest", "fluids"],
-    "causes": ["virus"],
-    "related_to": ["mosquito", "infection"]
+    "symptoms": ["fever", "rash", "joint pain", "red eyes"],
+    "treatments": ["rest", "fluids", "pain relief", "supportive care"],
+    "causes": ["zika virus", "mosquito bites"],
+    "related_to": ["mosquito", "infection", "virus"]
+  },
+  "acne": {
+    "symptoms": ["pimples", "blackheads", "whiteheads", "scarring"],
+    "treatments": ["topical treatments", "antibiotics", "hormonal therapy", "skincare"],
+    "causes": ["hormones", "bacteria", "genetics", "lifestyle"],
+    "related_to": ["skin", "hormones", "adolescence"]
+  },
+  "allergies": {
+    "symptoms": ["rash", "swelling", "itching", "sneezing", "runny nose"],
+    "treatments": ["antihistamines", "avoidance", "immunotherapy", "steroids"],
+    "causes": ["immune response", "environmental triggers", "genetics"],
+    "related_to": ["immune system", "hypersensitivity", "environment"]
+  },
+  "anemia": {
+    "symptoms": ["fatigue", "weakness", "pale skin", "shortness of breath"],
+    "treatments": ["iron supplements", "diet changes", "medication", "blood transfusion"],
+    "causes": ["iron deficiency", "blood loss", "chronic disease", "genetics"],
+    "related_to": ["blood", "iron", "nutrition"]
+  },
+  "appendicitis": {
+    "symptoms": ["abdominal pain", "nausea", "vomiting", "fever"],
+    "treatments": ["surgery", "antibiotics", "pain management", "supportive care"],
+    "causes": ["blockage", "infection", "inflammation"],
+    "related_to": ["appendix", "surgery", "emergency"]
+  },
+  "atherosclerosis": {
+    "symptoms": ["chest pain", "shortness of breath", "leg pain", "fatigue"],
+    "treatments": ["medication", "lifestyle changes", "surgery", "angioplasty"],
+    "causes": ["high cholesterol", "smoking", "diabetes", "hypertension"],
+    "related_to": ["arteries", "cardiovascular", "cholesterol"]
+  },
+  "atrial fibrillation": {
+    "symptoms": ["irregular heartbeat", "palpitations", "fatigue", "dizziness"],
+    "treatments": ["medication", "cardioversion", "ablation", "anticoagulants"],
+    "causes": ["heart disease", "high blood pressure", "thyroid problems"],
+    "related_to": ["heart rhythm", "cardiovascular", "arrhythmia"]
+  },
+  "autism": {
+    "symptoms": ["social difficulties", "communication problems", "repetitive behaviors"],
+    "treatments": ["behavioral therapy", "education", "medication", "support services"],
+    "causes": ["genetics", "brain development", "environmental factors"],
+    "related_to": ["neurodevelopmental", "behavior", "communication"]
+  },
+  "bipolar disorder": {
+    "symptoms": ["mood swings", "mania", "depression", "energy changes"],
+    "treatments": ["mood stabilizers", "therapy", "lifestyle management", "support"],
+    "causes": ["genetics", "brain chemistry", "stress", "trauma"],
+    "related_to": ["mental health", "mood disorders", "psychiatry"]
+  },
+  "cataracts": {
+    "symptoms": ["blurry vision", "glare sensitivity", "night vision problems"],
+    "treatments": ["surgery", "lens replacement", "glasses", "lighting adjustments"],
+    "causes": ["aging", "diabetes", "smoking", "UV exposure"],
+    "related_to": ["eyes", "vision", "aging"]
+  },
+  "celiac disease": {
+    "symptoms": ["abdominal pain", "diarrhea", "weight loss", "fatigue"],
+    "treatments": ["gluten-free diet", "supplements", "dietary counseling"],
+    "causes": ["gluten sensitivity", "genetics", "autoimmune response"],
+    "related_to": ["digestive system", "autoimmune", "diet"]
+  },
+  "chronic fatigue syndrome": {
+    "symptoms": ["extreme fatigue", "muscle pain", "cognitive problems", "sleep issues"],
+    "treatments": ["symptom management", "gradual exercise", "medication", "therapy"],
+    "causes": ["viral infections", "immune dysfunction", "stress"],
+    "related_to": ["fatigue", "chronic illness", "immune system"]
+  },
+  "cirrhosis": {
+    "symptoms": ["fatigue", "jaundice", "abdominal swelling", "confusion"],
+    "treatments": ["medication", "lifestyle changes", "liver transplant", "monitoring"],
+    "causes": ["alcohol", "hepatitis", "fatty liver disease"],
+    "related_to": ["liver", "alcohol", "chronic disease"]
+  },
+  "copd": {
+    "symptoms": ["shortness of breath", "cough", "mucus production", "fatigue"],
+    "treatments": ["bronchodilators", "steroids", "oxygen therapy", "rehabilitation"],
+    "causes": ["smoking", "air pollution", "genetics", "lung infections"],
+    "related_to": ["lungs", "smoking", "chronic disease"]
+  },
+  "crohn's disease": {
+    "symptoms": ["abdominal pain", "diarrhea", "weight loss", "fatigue"],
+    "treatments": ["anti-inflammatory drugs", "immunosuppressants", "surgery", "diet"],
+    "causes": ["autoimmune", "genetics", "environmental factors"],
+    "related_to": ["digestive system", "autoimmune", "inflammation"]
+  },
+  "cystic fibrosis": {
+    "symptoms": ["persistent cough", "lung infections", "poor growth", "salty sweat"],
+    "treatments": ["airway clearance", "antibiotics", "enzymes", "lung transplant"],
+    "causes": ["genetic mutation", "inherited disorder"],
+    "related_to": ["genetic", "lungs", "pancreas"]
+  },
+  "dementia": {
+    "symptoms": ["memory loss", "confusion", "personality changes", "difficulty reasoning"],
+    "treatments": ["medication", "cognitive therapy", "support care", "lifestyle interventions"],
+    "causes": ["alzheimer's", "vascular disease", "brain injury"],
+    "related_to": ["brain", "aging", "cognitive decline"]
+  },
+  "eczema": {
+    "symptoms": ["dry skin", "itching", "redness", "scaling"],
+    "treatments": ["moisturizers", "topical steroids", "antihistamines", "lifestyle changes"],
+    "causes": ["genetics", "allergies", "irritants", "stress"],
+    "related_to": ["skin", "allergies", "inflammation"]
+  },
+  "endometriosis": {
+    "symptoms": ["pelvic pain", "heavy periods", "pain during intercourse", "infertility"],
+    "treatments": ["pain medication", "hormonal therapy", "surgery", "fertility treatment"],
+    "causes": ["hormones", "genetics", "immune system"],
+    "related_to": ["reproductive system", "women's health", "hormones"]
+  },
+  "fibromyalgia": {
+    "symptoms": ["widespread pain", "fatigue", "sleep problems", "cognitive issues"],
+    "treatments": ["medication", "exercise", "therapy", "stress management"],
+    "causes": ["genetics", "infections", "trauma", "stress"],
+    "related_to": ["pain", "chronic condition", "nervous system"]
+  },
+  "gallstones": {
+    "symptoms": ["abdominal pain", "nausea", "vomiting", "jaundice"],
+    "treatments": ["surgery", "medication", "dietary changes", "monitoring"],
+    "causes": ["cholesterol", "bile composition", "genetics", "obesity"],
+    "related_to": ["gallbladder", "digestion", "surgery"]
+  },
+  "glaucoma": {
+    "symptoms": ["vision loss", "eye pain", "halos around lights", "headache"],
+    "treatments": ["eye drops", "surgery", "laser treatment", "monitoring"],
+    "causes": ["increased eye pressure", "genetics", "age"],
+    "related_to": ["eyes", "vision loss", "pressure"]
+  },
+  "hemorrhoids": {
+    "symptoms": ["rectal bleeding", "pain", "itching", "swelling"],
+    "treatments": ["topical treatments", "dietary changes", "surgery", "procedures"],
+    "causes": ["straining", "pregnancy", "obesity", "sitting"],
+    "related_to": ["rectum", "veins", "bowel movements"]
+  },
+  "herpes": {
+    "symptoms": ["painful blisters", "itching", "burning", "flu-like symptoms"],
+    "treatments": ["antiviral medication", "pain relief", "topical treatments"],
+    "causes": ["herpes simplex virus", "sexual contact", "skin contact"],
+    "related_to": ["virus", "sexually transmitted", "skin"]
+  },
+  "high cholesterol": {
+    "symptoms": ["no symptoms", "chest pain", "heart problems"],
+    "treatments": ["statins", "diet changes", "exercise", "lifestyle modification"],
+    "causes": ["diet", "genetics", "obesity", "diabetes"],
+    "related_to": ["cardiovascular", "diet", "heart disease"]
+  },
+  "huntington's disease": {
+    "symptoms": ["movement disorders", "cognitive decline", "emotional problems"],
+    "treatments": ["medication", "therapy", "support care", "genetic counseling"],
+    "causes": ["genetic mutation", "inherited disorder"],
+    "related_to": ["genetic", "brain", "movement"]
+  },
+  "hypothyroidism": {
+    "symptoms": ["fatigue", "weight gain", "cold sensitivity", "depression"],
+    "treatments": ["hormone replacement", "monitoring", "medication adjustment"],
+    "causes": ["autoimmune", "iodine deficiency", "thyroid surgery"],
+    "related_to": ["thyroid", "hormones", "metabolism"]
+  },
+  "ibs": {
+    "symptoms": ["abdominal pain", "bloating", "diarrhea", "constipation"],
+    "treatments": ["dietary changes", "medication", "stress management", "probiotics"],
+    "causes": ["gut-brain interaction", "stress", "diet", "genetics"],
+    "related_to": ["digestive system", "stress", "diet"]
+  },
+  "insomnia": {
+    "symptoms": ["difficulty falling asleep", "frequent awakening", "daytime fatigue"],
+    "treatments": ["sleep hygiene", "therapy", "medication", "lifestyle changes"],
+    "causes": ["stress", "medical conditions", "medications", "lifestyle"],
+    "related_to": ["sleep", "mental health", "lifestyle"]
+  },
+  "lactose intolerance": {
+    "symptoms": ["bloating", "diarrhea", "gas", "abdominal cramps"],
+    "treatments": ["dairy avoidance", "lactase supplements", "dietary modification"],
+    "causes": ["lactase deficiency", "genetics", "aging"],
+    "related_to": ["digestive system", "diet", "genetics"]
+  },
+  "lupus": {
+    "symptoms": ["joint pain", "skin rash", "fatigue", "fever"],
+    "treatments": ["immunosuppressants", "anti-inflammatory drugs", "lifestyle management"],
+    "causes": ["autoimmune", "genetics", "environmental triggers"],
+    "related_to": ["autoimmune", "inflammation", "chronic disease"]
+  },
+  "lyme disease": {
+    "symptoms": ["rash", "fever", "headache", "joint pain"],
+    "treatments": ["antibiotics", "pain management", "supportive care"],
+    "causes": ["tick bite", "borrelia bacteria"],
+    "related_to": ["infectious disease", "ticks", "bacteria"]
+  },
+  "macular degeneration": {
+    "symptoms": ["vision loss", "distorted vision", "difficulty reading"],
+    "treatments": ["injections", "laser therapy", "supplements", "low vision aids"],
+    "causes": ["aging", "genetics", "smoking", "diet"],
+    "related_to": ["eyes", "aging", "vision loss"]
+  },
+  "menopause": {
+    "symptoms": ["hot flashes", "mood changes", "irregular periods", "sleep problems"],
+    "treatments": ["hormone therapy", "lifestyle changes", "medication", "supplements"],
+    "causes": ["aging", "hormonal changes", "ovarian function decline"],
+    "related_to": ["women's health", "hormones", "aging"]
+  },
+  "meningitis": {
+    "symptoms": ["severe headache", "neck stiffness", "fever", "confusion"],
+    "treatments": ["antibiotics", "supportive care", "vaccination", "monitoring"],
+    "causes": ["bacterial infection", "viral infection", "fungal infection"],
+    "related_to": ["infection", "brain", "emergency"]
+  },
+  "muscular dystrophy": {
+    "symptoms": ["muscle weakness", "muscle wasting", "mobility problems"],
+    "treatments": ["physical therapy", "medication", "assistive devices", "surgery"],
+    "causes": ["genetic mutations", "inherited disorder"],
+    "related_to": ["genetic", "muscles", "mobility"]
+  },
+  "narcolepsy": {
+    "symptoms": ["excessive daytime sleepiness", "sleep attacks", "cataplexy"],
+    "treatments": ["stimulants", "lifestyle changes", "sleep hygiene", "therapy"],
+    "causes": ["brain chemistry", "genetics", "autoimmune"],
+    "related_to": ["sleep disorder", "brain", "neurological"]
+  },
+  "ocd": {
+    "symptoms": ["obsessive thoughts", "compulsive behaviors", "anxiety", "distress"],
+    "treatments": ["therapy", "medication", "exposure therapy", "support groups"],
+    "causes": ["brain chemistry", "genetics", "stress", "trauma"],
+    "related_to": ["mental health", "anxiety disorders", "behavior"]
+  },
+  "osteoarthritis": {
+    "symptoms": ["joint pain", "stiffness", "swelling", "reduced range of motion"],
+    "treatments": ["pain medication", "exercise", "weight management", "surgery"],
+    "causes": ["wear and tear", "aging", "injury", "genetics"],
+    "related_to": ["joints", "aging", "cartilage"]
+  },
+  "panic disorder": {
+    "symptoms": ["panic attacks", "chest pain", "shortness of breath", "fear"],
+    "treatments": ["therapy", "medication", "relaxation techniques", "lifestyle changes"],
+    "causes": ["genetics", "stress", "trauma", "medical conditions"],
+    "related_to": ["anxiety", "mental health", "panic"]
+  },
+  "pcos": {
+    "symptoms": ["irregular periods", "weight gain", "acne", "hair growth"],
+    "treatments": ["hormone therapy", "lifestyle changes", "fertility treatment", "medication"],
+    "causes": ["hormonal imbalance", "genetics", "insulin resistance"],
+    "related_to": ["women's health", "hormones", "reproductive system"]
+  },
+  "ptsd": {
+    "symptoms": ["flashbacks", "nightmares", "anxiety", "avoidance"],
+    "treatments": ["therapy", "medication", "support groups", "lifestyle changes"],
+    "causes": ["trauma", "violence", "accidents", "military service"],
+    "related_to": ["mental health", "trauma", "anxiety"]
+  },
+  "restless leg syndrome": {
+    "symptoms": ["leg discomfort", "urge to move legs", "sleep problems"],
+    "treatments": ["medication", "lifestyle changes", "exercise", "sleep hygiene"],
+    "causes": ["genetics", "iron deficiency", "kidney disease"],
+    "related_to": ["sleep", "neurological", "movement"]
+  },
+  "rheumatoid arthritis": {
+    "symptoms": ["joint pain", "swelling", "stiffness", "fatigue"],
+    "treatments": ["DMARDs", "biologics", "steroids", "physical therapy"],
+    "causes": ["autoimmune", "genetics", "environmental factors"],
+    "related_to": ["autoimmune", "joints", "inflammation"]
+  },
+  "schizophrenia": {
+    "symptoms": ["hallucinations", "delusions", "disorganized thinking", "social withdrawal"],
+    "treatments": ["antipsychotic medication", "therapy", "rehabilitation", "support"],
+    "causes": ["genetics", "brain chemistry", "environmental factors"],
+    "related_to": ["mental health", "psychosis", "brain"]
+  },
+  "shingles": {
+    "symptoms": ["painful rash", "blisters", "burning sensation", "itching"],
+    "treatments": ["antiviral medication", "pain relief", "topical treatments"],
+    "causes": ["varicella zoster virus reactivation", "weakened immunity"],
+    "related_to": ["virus", "nerve pain", "immune system"]
+  },
+  "sinus infection": {
+    "symptoms": ["facial pain", "nasal congestion", "headache", "thick discharge"],
+    "treatments": ["antibiotics", "decongestants", "nasal irrigation", "rest"],
+    "causes": ["bacterial infection", "viral infection", "allergies"],
+    "related_to": ["sinuses", "infection", "respiratory"]
+  },
+  "skin cancer": {
+    "symptoms": ["new moles", "changing moles", "sores that don't heal"],
+    "treatments": ["surgery", "radiation", "chemotherapy", "immunotherapy"],
+    "causes": ["UV exposure", "genetics", "fair skin", "sunburns"],
+    "related_to": ["skin", "cancer", "UV exposure"]
+  },
+  "sleep apnea": {
+    "symptoms": ["loud snoring", "breathing interruptions", "daytime fatigue"],
+    "treatments": ["CPAP therapy", "lifestyle changes", "surgery", "oral appliances"],
+    "causes": ["obesity", "throat anatomy", "age", "family history"],
+    "related_to": ["sleep", "breathing", "airway"]
+  },
+  "ulcerative colitis": {
+    "symptoms": ["bloody diarrhea", "abdominal pain", "urgency", "weight loss"],
+    "treatments": ["anti-inflammatory drugs", "immunosuppressants", "surgery"],
+    "causes": ["autoimmune", "genetics", "environmental factors"],
+    "related_to": ["digestive system", "autoimmune", "colon"]
+  },
+  "varicose veins": {
+    "symptoms": ["visible enlarged veins", "leg pain", "swelling", "itching"],
+    "treatments": ["compression stockings", "surgery", "laser treatment", "lifestyle changes"],
+    "causes": ["genetics", "pregnancy", "standing", "age"],
+    "related_to": ["veins", "circulation", "legs"]
   }
 }

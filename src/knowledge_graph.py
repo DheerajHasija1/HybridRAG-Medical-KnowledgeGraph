@@ -112,36 +112,50 @@ class KnowledgeGraph:
             pickle.dump(self.graph, f)
         return self.graph
 
-    def query_graph(self, query, max_results=5):
+    def query_graph(self, query, max_results=5):  # ✅ Fixed indentation
         if self.graph.number_of_nodes() == 0:
             return []
-        
+
         query_lower = query.lower()
         relevant_nodes = set()
         
+        # Extract medical keywords from query - BETTER APPROACH
+        medical_keywords = []
+        for word in query_lower.split():
+            word = word.strip('.,?!')  # Remove punctuation
+            if len(word) > 2 and word not in ['what', 'is', 'are', 'the', 'for', 'about', 'tell', 'me']:
+                medical_keywords.append(word)
+        
+        # Find nodes using keywords
         for node in self.graph.nodes():
             node_lower = str(node).lower()
+            # Check if any keyword matches node
+            if any(keyword in node_lower or node_lower in keyword for keyword in medical_keywords):
+                relevant_nodes.add(node)
+            # Original exact matching logic too
             if (query_lower == node_lower or 
                 query_lower in node_lower or 
-                node_lower in query_lower or
-                any(word in node_lower for word in query_lower.split() if len(word) > 2)):
+                node_lower in query_lower):
                 relevant_nodes.add(node)
 
         results = []
         for node in list(relevant_nodes)[:15]:
+            # Get neighbors and predecessors
             for neighbor in self.graph.neighbors(node):
                 edge_data = self.graph.get_edge_data(node, neighbor)
                 if edge_data:
                     for edge_info in edge_data.values():
-                        relation = edge_info.get("relation", "related_to")
-                        results.append(f"{node} {relation} {neighbor}")
+                        if edge_info:  # Check if edge_info is not None
+                            relation = edge_info.get("relation", "related_to")
+                            results.append(f"{node} {relation} {neighbor}")
             
             for pred in self.graph.predecessors(node):
                 edge_data = self.graph.get_edge_data(pred, node)
                 if edge_data:
                     for edge_info in edge_data.values():
-                        relation = edge_info.get("relation", "related_to")
-                        results.append(f"{pred} {relation} {node}")
+                        if edge_info:  # Check if edge_info is not None
+                            relation = edge_info.get("relation", "related_to")
+                            results.append(f"{pred} {relation} {node}")
 
         return list(set(results))[:max_results]
 

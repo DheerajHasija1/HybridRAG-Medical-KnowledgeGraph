@@ -1,128 +1,101 @@
 # src/hybrid_agent.py
+
+from langchain_groq import ChatGroq
+from langchain_core.prompts import PromptTemplate
+import os
+
 class HybridRAGAgent:
     def __init__(self, vectorstore, knowledge_graph):
         self.vectorstore = vectorstore
         self.knowledge_graph = knowledge_graph
+        self.llm = ChatGroq(
+            model="llama3-8b-8192",
+            temperature=0,
+            api_key=os.getenv("GROQ_API_KEY")
+        )
+        self.prompt_template = PromptTemplate(
+    template="""
+You are a specialized medical knowledge assistant. Your primary role is to help with medical, health, and healthcare-related questions only.
+
+INSTRUCTIONS:
+1. First, determine if the question is medical/health-related:
+   - Medical topics: symptoms, diseases, treatments, medications, health conditions, anatomy, medical procedures, healthcare, wellness
+   - Non-medical topics: finance, technology, entertainment, sports, politics, general knowledge, etc.
+
+2. If question is NOT medical/health-related:
+   - Politely decline and redirect: "I'm sorry, but I specialize only in medical and healthcare topics. For questions about [topic], I'd recommend consulting appropriate experts in that field. Is there anything health-related I can help you with instead?"
+
+3. If question IS medical/health-related:
+   - Keep response concise and under 150 words
+   - Use bullet points for key information
+   - Structure: Brief definition + 3-4 key points maximum
+   - Only add disclaimer for medical advice questions, not general information
+
+4. Response Format (KEEP SHORT):
+   - 1-2 sentence definition
+   - Maximum 3-4 bullet points
+   - No lengthy explanations
+
+Context from PDF:
+{context}
+
+Knowledge Graph Relations:
+{relations}
+
+User Question: {question}
+
+Answer:
+""",
+    input_variables=["context", "relations", "question"]
+)
+
 
     def process_query_with_details(self, query):
-        """Process query and return comprehensive response with source details"""
         try:
             # Vector search
             vector_docs = self.vectorstore.similarity_search(query, k=5)
             vector_results = [doc.page_content for doc in vector_docs]
-            
-            # Graph search  
+
+            # Graph search
             graph_results = self.knowledge_graph.query_graph(query, max_results=5)
+
+            # Summarise context
+            context_text = "\n---\n".join(vector_results[:2]) if vector_results else ""
+            relations_text = "\n".join(graph_results) if graph_results else ""
+
+            # LLM answer using context and graph
+            final_prompt = self.prompt_template.format(
+                context=context_text,
+                relations=relations_text,
+                question=query
+            )
             
-            # Generate comprehensive response
-            response = self._generate_comprehensive_response(query, vector_results, graph_results)
-            
-            # Determine route
-            if graph_results and vector_results:
-                route = "both"
-            elif vector_results:
-                route = "vector_only"
-            elif graph_results:
-                route = "graph_only"
-            else:
-                route = "none"
-            
+            # GROQ Completion
+            response = self.llm.invoke(final_prompt)
+            answer = response.content
+
             source_details = {
                 "vector_results": vector_results,
-                "graph_results": graph_results, 
+                "graph_results": graph_results,
                 "query": query,
-                "route": route
+                "route": self._get_route(vector_results, graph_results)
             }
-            
-            return response, source_details
-            
+            return answer, source_details
         except Exception as e:
             error_response = f"Error processing query: {str(e)}"
             empty_details = {
                 "vector_results": [],
-                "graph_results": [], 
+                "graph_results": [],
                 "query": query,
                 "route": "error"
             }
             return error_response, empty_details
-    
-    def _generate_comprehensive_response(self, query, vector_results, graph_results):
-        """Generate a well-formatted comprehensive medical response"""
-        
-        # Process graph results for structured info
-        symptoms = []
-        treatments = []
-        causes = []
-        related = []
-        
-        if graph_results:
-            for relation in graph_results:
-                relation_lower = relation.lower()
-                if 'symptoms' in relation_lower:
-                    part = relation.split(' symptoms ')[-1] if ' symptoms ' in relation else relation.split()[-1]
-                    symptoms.append(part.strip())
-                elif 'treatments' in relation_lower or 'treatment' in relation_lower:
-                    part = relation.split(' treatments ')[-1] if ' treatments ' in relation else relation.split()[-1]
-                    treatments.append(part.strip())
-                elif 'causes' in relation_lower:
-                    part = relation.split(' causes ')[-1] if ' causes ' in relation else relation.split()[-1]
-                    causes.append(part.strip())
-                else:
-                    related.append(relation.strip())
-        
-        # Combine vector results
-        combined_text = " ".join(vector_results[:2]) if vector_results else ""
-        
-        # Generate response
-        response_parts = []
-        query_lower = query.lower()
-        
-        # Header based on query type
-        if any(word in query_lower for word in ['what is', 'define', 'definition']):
-            if 'fever' in query_lower:
-                response_parts.append("## 🌡️ What is Fever?")
-                response_parts.append("**Fever** is a temporary increase in body temperature, often due to illness. It's a natural immune response that helps fight infections.\n")
-                
-                if combined_text:
-                    clean_text = combined_text[:350].strip()
-                    response_parts.append(f"### 📚 Medical Definition\n{clean_text}...\n")
-                
-        elif any(word in query_lower for word in ['symptoms', 'signs']):
-            condition = query_lower.replace('symptoms of', '').replace('symptoms', '').strip().title()
-            response_parts.append(f"## 🩺 Symptoms of {condition}")
-            
-        elif any(word in query_lower for word in ['treatment', 'cure', 'medicine']):
-            condition = query_lower.replace('treatment for', '').replace('treatment', '').strip().title()
-            response_parts.append(f"## 💊 Treatment for {condition}")
-            
-        else:
-            response_parts.append(f"## 📋 Medical Information: {query.title()}")
-            if combined_text:
-                clean_text = combined_text[:400].strip()
-                response_parts.append(f"{clean_text}...\n")
-        
-        # Add structured information from knowledge graph
-        if symptoms or treatments or causes or related:
-            response_parts.append("### 🔗 Key Medical Relationships")
-            
-            if symptoms:
-                symptoms_text = ", ".join(list(set(symptoms))[:4])
-                response_parts.append(f"**🩺 Symptoms:** {symptoms_text}")
-                
-            if treatments:
-                treatments_text = ", ".join(list(set(treatments))[:4])
-                response_parts.append(f"**💊 Treatments:** {treatments_text}")
-                
-            if causes:
-                causes_text = ", ".join(list(set(causes))[:4])  
-                response_parts.append(f"**⚠️ Causes:** {causes_text}")
-                
-            if related:
-                related_text = ", ".join(list(set(related))[:3])
-                response_parts.append(f"**🔗 Related:** {related_text}")
-        
-        # Add disclaimer
-        response_parts.append("\n---")
-        response_parts.append("*📋 This information is for educational purposes only. Always consult healthcare professionals for medical advice.*")
-        
-        return "\n\n".join(response_parts) if response_parts else f"I found some information about '{query}', but couldn't generate a comprehensive summary. Please check the detailed sources below."
+
+    def _get_route(self, vector_results, graph_results):
+        if graph_results and vector_results:
+            return "both"
+        elif vector_results:
+            return "vector_only"
+        elif graph_results:
+            return "graph_only"
+        return "none"

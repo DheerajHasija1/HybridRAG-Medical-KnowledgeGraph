@@ -8,6 +8,7 @@ import time
 
 # Load environment variables
 load_dotenv()
+DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"
 
 # Configuration
 PDF_PATH = "data/The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf"
@@ -38,6 +39,9 @@ def initialize_system_cached():
 
 def display_source_details(vector_results, graph_results, query, route, message_idx=0):
     """Display detailed source breakdown in expandable sections"""
+    if not DEBUG_MODE:
+        return
+        
     unique_id = int(time.time() * 1000000) % 1000000  # Unique timestamp-based ID
     
     with st.expander("🔍 **View Detailed Sources & Search Breakdown**", expanded=False):

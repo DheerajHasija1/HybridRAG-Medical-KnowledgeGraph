@@ -3,7 +3,7 @@ import pickle
 import networkx as nx
 from transformers import pipeline
 from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 import re
 import json
 from collections import defaultdict

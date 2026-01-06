@@ -11,3 +11,4 @@ pypdf
 faiss-cpu
 transformers
 torch
+langchain-text-splitters
